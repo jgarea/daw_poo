@@ -13,6 +13,7 @@ public class Banco {
 
     
     //Usamos una estructura de datos dinámica en este caso un ArrayList para almacenar las cuentas bancarias.
+    //ArrayList puede cambiar de tamaño segun se necesite.
     private ArrayList<CuentaBancaria> cuentas;
     final int MAX_CUENTAS = 100;
     private int cont;
@@ -125,6 +126,22 @@ public class Banco {
             return -1;
 
         return c.getSaldo();
+    }
+    
+    public boolean eliminarCuenta(String iban) {
+
+        Iterator<CuentaBancaria> it = cuentas.iterator();
+        CuentaBancaria c;
+        while (it.hasNext()) {
+            c=it.next();
+            if (c.getIBAN().equals(iban)) {
+                if (c.getSaldo()==0){
+                    it.remove();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     /**

@@ -48,6 +48,9 @@ public class Menu {
                 case 5:
                     listByID();
                     break;
+                case 6:
+                    delete();
+                    break;
                 case 0:
                     System.out.println("\nSaliendo del programa...\n");
                     break;
@@ -72,6 +75,7 @@ public class Menu {
         System.out.println("3: Obtener los datos de una cuenta concreta.Realizar un ingreso en una cuenta.");
         System.out.println("4: Retirar efectivo de una cuenta.");
         System.out.println("5: Consultar el saldo actual de una cuenta.");
+        System.out.println("6: Eliminar una cuenta(El saldo tiene que ser 0).");
         System.out.print("\nOpción: ");
     }
 
@@ -194,5 +198,15 @@ public class Menu {
             System.out.println("IBAN no encontrado");
         else
             System.out.println(banco.obtenerSaldo(iban));
+    }
+
+    private void delete() {
+        System.out.print("Introduzca el IBAN de la cuenta corriente:");
+        String iban = sc.nextLine();
+        if(banco.eliminarCuenta(iban)){
+            System.out.println("Cuenta eliminada");
+        }else{
+            System.out.println("No se ha podido eliminar la cuenta comprueba el saldo actual.");
+        }
     }
 }
