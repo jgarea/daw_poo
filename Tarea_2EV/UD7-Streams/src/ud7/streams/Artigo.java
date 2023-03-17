@@ -1,13 +1,10 @@
+package ud7.streams;
 
 import java.util.Objects;
 
-/**
- *
- * @author Juan
- */
-public class Artigo implements Comparable<Artigo>{
-    private String codigo;
-    private String denominacion;
+public class Artigo implements Comparable<Artigo> {
+    private final String codigo;
+    private final String denominacion;
     private double prezo;
 
     public Artigo(String codigo, String denominacion, double prezo) {
@@ -20,16 +17,8 @@ public class Artigo implements Comparable<Artigo>{
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public String getDenominacion() {
         return denominacion;
-    }
-
-    public void setDenominacion(String denominacion) {
-        this.denominacion = denominacion;
     }
 
     public double getPrezo() {
@@ -40,7 +29,12 @@ public class Artigo implements Comparable<Artigo>{
         this.prezo = prezo;
     }
 
-  
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.codigo);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -54,14 +48,16 @@ public class Artigo implements Comparable<Artigo>{
             return false;
         }
         final Artigo other = (Artigo) obj;
-        return Objects.equals(this.codigo, other.codigo);
+        return this.codigo.equals(other.codigo);
     }
 
     @Override
-    public int compareTo(Artigo o) {
-        if(this.equals(o))
-            return 0;
-        return denominacion.compareTo(o.getDenominacion());
+    public int compareTo(Artigo t) {
+        return denominacion.compareTo(t.denominacion);
     }
     
+    @Override
+    public String toString() {
+        return codigo+": "+denominacion+" ("+String.format("%4f",prezo)+"€)";
+    }
 }
