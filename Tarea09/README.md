@@ -100,3 +100,59 @@ private void listClient() {
     
 }
 ```
+
+# API `java.io`
+* `File`: representa un archivo/directorio y permite realizar operaciones como verificar si existe un archivo o directorio, obtener propiedades eliminarlo, crearlo.
+* `InputStream` y `OutputStream` clases abstratas para leer y escribir byte a byte,se almacenan en binario. Se utilizan para almacenar un archivo como un ejecutable o una imagen.
+    * Clases concretas:
+        * ``ByteArrayInputStream``: Crea un InputStream a partir dun array de byte (byte[]) pasado como parámetro
+        ao seu construtor. Cando lemos deste Stream lemos do array de datos.
+        * ``ByteArrayOutputStream``: Crea un OutputStream de xeito que os bytes que escribimos se almacenan nun
+        array de bytes (byte[]). A clase proporciona o método **byte[] toByteArray();** que nos permite recuperar os
+        datos escritos.
+        
+        * `FileInputStream`: Crea un `InputStream` a partir dun obxecto File que se recibe ou crea no construtor da
+        clase e que referencia a un ficheiro en disco. Cando lemos deste Stream lemos datos do ficheiro.
+        * `FileOutputStream`: Crea un `OutputStream` de xeito que os bytes que escribimos se almacenan nun ficheiro referenciado polo obxecto File que se recibe ou crea no construtor da clase.
+        * `BufferedInputStream` , `BufferedOutputStream`
+        ---
+        * ``DataInputStream``: Permite a lectura de datos primitivos do Stream como char, boolean, byte, float,
+        double, ou int.
+        * ``DataOutputStream``: Permite volcar datos primitivos como char, boolean, byte, float, double, ou int a un
+        fluxo de saída.
+        * ``ObjectInputStream``: Permite ler obxectos dun fluxo de bytes escritos con ``ObjectOutputStream``.
+        * ``ObjectOutputStream``: Permite volcar obxectos no Stream. Cando se crea o stream sempre se envía unha
+        cabeceira mediante o método ``void writeStreamHeader()``, o que debemos ter en conta si queremos engadir
+        obxectos ao final de un ficheiro xa existente. Nese caso unha solución e empregar unha clase herdada na
+        que este método non faga nada.
+
+* `Reader` y `Writer`: Clases abstractas para leer y escribir caracteres en vez de bytes, se utilizan para almacenar archivos de texto.
+    * Clases concretas:
+        * `FileReader` , `FileWriter`
+
+        * `BufferedReader` Esta clase proporciona como principal aportación o método ``String readLine()`` que lee
+        do fluxo de texto unha liña.
+
+        * `BufferedWriter`  Esta clase realmente non proporciona novas funcionalidades importantes sobre as
+        ofrecidas por un Reader simple, pero mellora a súa velocidade facendo uso de un buffer de caracteres. 
+
+        * `PrintWriter` Esta clase proporciona métodos que nos permiten dar formato a conversión en texto da
+        información que queremos escribir no Stream, destacando as distintas versións sobrecargadas dos
+        métodos **print**, **println** e **printf**
+
+# RandomAccessFile
+A clase ``RandomAccessFile`` nos permite crear, almacenar e leer información en arquivos sobre un soporte
+almacenamento de acceso aleatorio
+
+**En Java o ficheiro se “abre” cando instanciamos o obxecto RandomAccessFile que o referencia.**
+
+O concepto máis importante dos RandomAccessFile é o “punteiro do ficheiro” ou “posición”. Os bytes
+almacenados nun ficheiro están identificados por unha dirección, sendo 0 a dirección do primeiro byte, 1 a do
+segundo... etc. 
+
+A clase RandomAccessFile dispón de dous métodos para xestionar o
+posicionamento do punteiro do ficheiro:
+* ``long getFilePointer();`` que nos devolve o número do byte ao que está apuntando actualmente o punteiro
+do ficheiro, e polo tanto o byte que se vai a ler ou escribir na seguinte operación.
+* ``void seek(long pos);`` que cambia a posición do punteiro do ficheiro ao byte identificado polo número
+indicado.
