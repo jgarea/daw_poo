@@ -455,3 +455,6 @@ class XestionPropietarios {
 }
 
 ```
+
+
+* Para leer datos de un CSV a la base de datos(de tres formas)
