@@ -143,7 +143,7 @@ private void listClient() {
 ## Elegir la clase:
 * Primero tenemos que comprobar si queremos escribir o leer caracteres o en binario.
     * Para leer y escribir en binario utilizamos las clases heredadas de `InputStream` y `OutputStream` ejemplos más arriba. Si lees o escribes objetos tienen que ser seriealizables implementando la interfaz
-    * Para leer y escribir usamos las clases que heredan de `Reader` y `Writer`.
+    * Para leer y escribir caracteres usamos las clases que heredan de `Reader` y `Writer`.
 
 ## Ejercicio
 * Crea un datos.txt con estos datos:
