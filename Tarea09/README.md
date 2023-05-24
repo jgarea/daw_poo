@@ -155,6 +155,9 @@ private void listClient() {
 * Lee cada una de las lineas con stream y visualiza por pantalla.
 * Lee cada una de las lineas y escribelas en otro fichero datos2.txt.
 
+<details><summary>Solucion</summary>
+<p>
+
 ```java
 try ( BufferedReader read = new BufferedReader(new FileReader("texto.txt"));PrintWriter writer= new PrintWriter("datos2.txt");) {
             String linea;
@@ -168,6 +171,10 @@ try ( BufferedReader read = new BufferedReader(new FileReader("texto.txt"));Prin
             Logger.getLogger(PruebaLecturaFicherosStreams.class.getName()).log(Level.SEVERE, null, ex);
         }
 ```
+
+</p>
+</details>
+
 # RandomAccessFile
 A clase ``RandomAccessFile`` nos permite crear, almacenar e leer información en arquivos sobre un soporte
 almacenamento de acceso aleatorio
