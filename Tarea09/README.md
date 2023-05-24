@@ -140,6 +140,34 @@ private void listClient() {
         información que queremos escribir no Stream, destacando as distintas versións sobrecargadas dos
         métodos **print**, **println** e **printf**
 
+## Elegir la clase:
+* Primero tenemos que comprobar si queremos escribir o leer caracteres o en binario.
+    * Para leer y escribir en binario utilizamos las clases heredadas de `InputStream` y `OutputStream` ejemplos más arriba. Si lees o escribes objetos tienen que ser seriealizables implementando la interfaz
+    * Para leer y escribir usamos las clases que heredan de `Reader` y `Writer`.
+
+## Ejercicio
+* Crea un datos.txt con estos datos:
+```
+12345D,juan
+64421G,alba
+76532E,pepe  
+```
+* Lee cada una de las lineas con stream y visualiza por pantalla.
+* Lee cada una de las lineas y escribelas en otro fichero datos2.txt.
+
+```java
+try ( BufferedReader read = new BufferedReader(new FileReader("texto.txt"));PrintWriter writer= new PrintWriter("datos2.txt");) {
+            String linea;
+            while ((linea = read.readLine()) != null) {
+                System.out.println(linea);
+                writer.print(linea+"\n");
+            } 
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PruebaLecturaFicherosStreams.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PruebaLecturaFicherosStreams.class.getName()).log(Level.SEVERE, null, ex);
+        }
+```
 # RandomAccessFile
 A clase ``RandomAccessFile`` nos permite crear, almacenar e leer información en arquivos sobre un soporte
 almacenamento de acceso aleatorio
