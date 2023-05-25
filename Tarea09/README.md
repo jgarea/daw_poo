@@ -192,6 +192,35 @@ do ficheiro, e polo tanto o byte que se vai a ler ou escribir na seguinte operac
 * ``void seek(long pos);`` que cambia a posición do punteiro do ficheiro ao byte identificado polo número
 indicado.
 
+``String	readUTF()``
+
+Reads in a string from this file.
+
+``writeUTF(String str)``
+
+Writes a string to the file using modified UTF-8 encoding in a machine-independent manner.
+
+```java
+private Usuario readUser(RandomAccessFile ras) throws EOFException, IOException
+```
+
+<details><summary>Solucion</summary>
+<p>
+
+```java
+String dni,nome;
+int edade;
+dni=ras.readUTF();
+if (dni==null) throw new EOFException("End of file");
+if (dni.equals("*")) return null;   // Rexistro borrado
+nome=ras.readUTF();
+edade=ras.readInt();
+return new Usuario(dni,nome,edade);
+```
+
+</p>
+</details>
+
 # LineReader 
 ```java
 package database;
