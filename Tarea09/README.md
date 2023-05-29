@@ -526,3 +526,29 @@ class XestionPropietarios {
 [Leer CSV RAS, STREAMS](https://github.com/jgarea/daw_poo/tree/main/ConcesionarioImporter)
 
 
+* Leer Lineas
+```java
+ /**
+     * Lee unha Liña do ficheiro CSV respetando a codificación UTF-8
+     * readLine de RandomAccessFile non serve, porque usa 2 bytes por caracter en todos os casos
+     * e readUTF tampouco porque se gardaría o número de bytes do String antes de cada liña.
+     */
+    protected String readLine(RandomAccessFile ras) throws IOException {
+        ArrayList<Byte> line=new ArrayList<>();
+        try {
+            byte cbyte=ras.readByte();
+            while(cbyte!='\n') {
+                line.add(cbyte);
+                cbyte=ras.readByte();
+            }
+        } catch(EOFException e) {
+        }
+        int size=line.size();
+        if (size==0) return null;
+        byte[] chars=new byte[line.size()];
+        for(int idx=0;idx<size;idx++) chars[idx]=line.get(idx);
+        return new String(chars);
+    }
+   
+    public abstract R stringToObject(String line) throws IOException;
+```
